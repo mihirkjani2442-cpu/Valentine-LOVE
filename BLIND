@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url("https://media.istockphoto.com/id/1226612075/photo/silhouette-of-teenage-couple-kissing-at-sunset.jpg?s=612x612&w=0&k=20&c=w0YDCfJcBSOPjSA8kAcsjStA1nAurSf-BPJkMZYF60I=")
+      center/cover no-repeat;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    color: #ff5fa2;
+    font-size: 18px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+  }
+
+  .card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    width: 320px;
+    position: relative;
+    animation: popIn 1s ease;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  h2 {
+    color: #ff2f92;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  p {
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  #yes {
+    background: linear-gradient(45deg, #ff4081, #ff77aa);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255,64,129,0.5);
+    transition: transform 0.2s;
+  }
+
+  #yes:hover {
+    transform: scale(1.1);
+  }
+
+  /* OLD STYLE NO BUTTON */
+  #no {
+    background: #eee;
+    position: absolute;
+    margin-left: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  .love-msg {
+    font-size: 22px;
+    color: #ff4081;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h2>Dipu 💖</h2>
+  <p>Every heartbeat whispers your name…</p>
+  <p><b>Will you be my Valentine? 💘</b></p>
+
+  <button id="yes" onclick="yesClick()">Yes 💕</button>
+  <button id="no" onmouseenter="moveNo()" ontouchstart="moveNo()">No 🙈</button>
+</div>
+
+<script>
+  function moveNo() {
+    const x = Math.random() * 400 - 200;
+    const y = Math.random() * 400 - 200;
+
+    document.getElementById("no").style.transform =
+      `translate(${x}px, ${y}px)`;
+  }
+
+  function yesClick() {
+    document.getElementById("card").innerHTML = `
+      <div class="love-msg">
+        Yayyyy! ❤️🥰<br><br>
+        You just made my world brighter 💞<br>
+         💍
+      </div>
+    `;
+  }
+
+  /* Floating hearts generator */
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }, 300);
+</script>
+
+</body>
+</html>
